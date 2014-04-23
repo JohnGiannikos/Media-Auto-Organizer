@@ -6,6 +6,7 @@ import logging
 
 
 from opensubtitles import OpenSubtitles
+from imdbpie import Imdb
 
 root = logging.getLogger()
 root.setLevel(logging.DEBUG)
@@ -17,21 +18,18 @@ class FilesScanner():
     def __init__(self):
         pass
 
-    def scanFolder(self,path,minSize=0):
-        files = self.getAllFiles(path)
+    def scan_folder(self,path,minSize=0):
+        files = self.get_all_files(path)
 
         filtered = [x["path"] for x in files if x["size"] >= minSize]
 
-        op = OpenSubtitles()
-
-        info = op.getVideoInfo(*filtered)
-
-        op.logout()
+        with OpenSubtitles() as op:
+            info = op.get_video_info(*filtered)
 
         return info
 
 
-    def getAllFiles(self,path):
+    def get_all_files(self, path):
         files_found = list()
 
         for root, subFolders, files in os.walk(path):
@@ -47,6 +45,8 @@ class FilesScanner():
 
 if __name__ == "__main__":
     scanner = FilesScanner()
-    files = scanner.scanFolder("/home/john/test movies",1*8*1024*1024)
-    print(files)
+    files = scanner.scan_folder("/home/john/test movies",1*8*1024*1024)
+    imdb = Imdb()
+    movie = imdb.find_movie_by_id(files[0]["imdbid"])
+    print(movie)
 
