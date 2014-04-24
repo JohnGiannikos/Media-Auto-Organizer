@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11d77331-2bc1-463f-838b-530809701b27" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media_scanner.py" afterPath="$PROJECT_DIR$/media_scanner.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opensubtitles.py" afterPath="$PROJECT_DIR$/opensubtitles.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_schema.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/organizer.py" afterPath="$PROJECT_DIR$/organizer.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/persistence.py" afterPath="$PROJECT_DIR$/persistence.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -31,12 +28,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="persistence.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="persistence.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/persistence.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="29" selection-start="2002" selection-end="2002" vertical-scroll-proportion="0.6017699" vertical-offset="620" max-vertical-offset="2640">
+            <state line="99" column="13" selection-start="3185" selection-end="3185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1845">
               <folding>
                 <element signature="e#20#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db_schema.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db_schema.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="26" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="1140">
+              <folding>
+                <element signature="e#22#94#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,10 +59,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="organizer.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="organizer.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/organizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="20" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+            <state line="5" column="13" selection-start="75" selection-end="75" vertical-scroll-proportion="0.13274336" vertical-offset="0" max-vertical-offset="615">
               <folding>
                 <element signature="e#21#41#0" expanded="true" />
               </folding>
@@ -118,8 +126,9 @@
         <option value="$PROJECT_DIR$/data_extractor.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/media_scanner.py" />
-        <option value="$PROJECT_DIR$/organizer.py" />
+        <option value="$PROJECT_DIR$/db_schema.py" />
         <option value="$PROJECT_DIR$/persistence.py" />
+        <option value="$PROJECT_DIR$/organizer.py" />
       </list>
     </option>
   </component>
@@ -461,13 +470,18 @@
       <created>1398211970713</created>
       <updated>1398211970713</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="database creation for movies">
+      <created>1398382667614</created>
+      <updated>1398382667614</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="77" width="1682" height="1024" extended-state="6" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -482,7 +496,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -502,17 +515,11 @@
     </option>
     <MESSAGE value="new project" />
     <MESSAGE value="basic functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic functionality" />
+    <MESSAGE value="database creation for movies" />
+    <option name="LAST_COMMIT_MESSAGE" value="database creation for movies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/persistence.py</url>
-          <line>101</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -792,15 +799,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/organizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="20" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <folding>
-            <element signature="e#21#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/env/lib/python3.4/site-packages/sqlalchemy/engine/default.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="434" column="0" selection-start="15181" selection-end="15181" vertical-scroll-proportion="0.0" vertical-offset="6238" max-vertical-offset="14325">
@@ -810,9 +808,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/persistence.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="29" selection-start="2002" selection-end="2002" vertical-scroll-proportion="0.6017699" vertical-offset="620" max-vertical-offset="2640">
+        <state line="99" column="13" selection-start="3185" selection-end="3185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1845">
           <folding>
             <element signature="e#20#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_schema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="26" selection-start="833" selection-end="833" vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="1140">
+          <folding>
+            <element signature="e#22#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/organizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="75" selection-end="75" vertical-scroll-proportion="0.13274336" vertical-offset="0" max-vertical-offset="615">
+          <folding>
+            <element signature="e#21#41#0" expanded="true" />
           </folding>
         </state>
       </provider>

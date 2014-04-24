@@ -28,7 +28,8 @@ if __name__ == "__main__":
     org = Organizer()
     #files = org.organize_folder("/home/john/test movies")
     files = org.load("sample.pickle")
-    persistence.save_movie(*files)
+    db = persistence.Database()
+    db.save_movie(*files)
 
 
 
