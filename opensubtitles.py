@@ -34,7 +34,7 @@ class OpenSubtitles():
     def logout(self):
         self.server.LogOut(self.session["token"])
 
-    def hashFile(self,path):
+    def hash(self,path):
         """Produce a hash for a video file: size + 64bit chksum of the first and
         last 64k (even if they overlap because the file is smaller than 128k)"""
         longlongformat = 'Q' # unsigned long long little endian
@@ -65,7 +65,7 @@ class OpenSubtitles():
         return returnedhash
 
 
-    def isVideo(self,path):
+    def is_video(self,path):
         """Check mimetype and/or file extension to detect valid video file
             !!!!!!!!!!!mime guessing is slow!!!!!!!!!!
         """
@@ -96,12 +96,12 @@ class OpenSubtitles():
 
         return True
 
-    def getVideoInfo(self,*paths):
+    def get_video_info(self,*paths):
         video = list()
         for path in paths:
-            if self.isVideo(path):
+            if self.is_video(path):
                 video.append({ "path" : path,
-                               "hash" : self.hashFile(path)
+                               "hash" : self.hash(path)
                 })
 
         found_info = self.server.CheckMovieHash(self.session["token"],[x["hash"] for x in video])
@@ -110,12 +110,20 @@ class OpenSubtitles():
 
         for v in video:
             if v["hash"] in found_info["data"] and type(found_info["data"][v["hash"]]) is dict:
-                tmp = {"path" : v["path"]}
-                tmp.update(found_info["data"][v["hash"]])
-                info.append(tmp)
+                tmp = {"path" : v["path"],
+                       "imdbid" : "tt" + found_info["data"][v["hash"]]["MovieImdbID"] }
 
+                info.append(tmp)
         return info
 
+    def __enter__(self):
+        self.login()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.logout()
+        if exc_type:
+            logging.error(exc_type)
 
 if __name__ == "__main__":
     op = OpenSubtitles()
