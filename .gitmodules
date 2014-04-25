@@ -1,3 +1,0 @@
-[submodule "submodules/imdb-pie"]
-	path = submodules/imdb-pie
-	url = git@github.com:richardasaurus/imdb-pie.git
