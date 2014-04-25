@@ -25,6 +25,7 @@ class Organizer ():
             return  pickle.load(handle)
 
 if __name__ == "__main__":
+
     org = Organizer()
     #files = org.organize_folder("/home/john/test movies")
     files = org.load("sample.pickle")

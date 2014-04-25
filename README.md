@@ -8,4 +8,5 @@ Media Auto Organizer
 Required libs
 
 Python requests - python-requests.org
-sqlalchemy
+
+sqlalchemy orm  - sqlalchemy
