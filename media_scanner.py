@@ -79,6 +79,8 @@ class MediaScanner():
                                             data.data["series"]["year"],  data.data["series"]["image"]["url"])
                 file.series = series
 
+            self.db.save_file(file)
+
     def scan_all_files_under_folder(self,path,minSize=0):
 
         self.paths = list()
@@ -93,6 +95,7 @@ class MediaScanner():
                     }
                     if rec["size"]>= minSize:
                         self.paths.append(rec)
+        logging.info("Found %d files" % len(self.paths))
 
     def filter_video(self):
         self.paths = [x for x in self.paths if x['type']=='video']
@@ -100,8 +103,9 @@ class MediaScanner():
     def analyze_files(self):
         self.analyze_video()
         self.update_metadata_imdb()
-        for file in self.files:
-            self.db.save_file(file)
+        logging.info("Starting to save files")
+        #for file in self.files:
+         #   self.db.save_file(file)
 
 
 
@@ -117,6 +121,8 @@ def get_filetype(path):
     else:
         logging.info("File " + path + " has unknown extension. Guessing mime type")
         fileMimeType, encoding = mimetypes.guess_type(path)
+        if fileMimeType == None:
+            return False
         fileMimeType = fileMimeType.split('/', 1)
         return fileMimeType[0]
 
@@ -126,6 +132,8 @@ def get_filetype(path):
 def is_video(path):
 
     fileExtension = path.rsplit('.', 1)
+    if len(fileExtension)==1:
+        return False
     if fileExtension[1]  in ['3g2', '3gp', '3gp2', '3gpp', 'ajp', \
     'asf', 'asx', 'avchd', 'avi', 'bik', 'bix', 'box', 'cam', 'dat', \
     'divx', 'dmf', 'dv', 'dvr-ms', 'evo', 'flc', 'fli', 'flic', 'flv', \

@@ -17,7 +17,7 @@ class Database():
         Base.metadata.create_all(self.engine)
         Session = sessionmaker()
         Session.configure(bind=self.engine)
-        self.session = Session()
+        self.session = Session(autocommit=False)
 
     def create_episode(self,**kwargs):
         return Episode(**kwargs)
@@ -41,10 +41,7 @@ class Database():
 
     def add_genre(self,file,name):
         new_genre, _ = self.get_or_create(Genre, name=name)
-        asc = GenreM2M()
-        asc.genre = new_genre
-        file.genres.append(asc)
-
+        file.genres.append(new_genre)
 
     def save_movies(self, *movies):
         for movie in movies:
@@ -76,19 +73,27 @@ class Database():
                 self.save_movies(episode)
 
     def save_file(self,file):
-        self.session.add(file)
-        self.session.commit()
+        try:
+            self.session.add(file)
+            self.session.commit()
+        except IntegrityError as e:
+            self.session.rollback()
+            logging.error("Error inserting file %s" % str(e))
+            return
+
 
     def get_or_create(self, model, defaults=None, **kwargs):
-        instance = self.session.query(model).filter_by(**kwargs).first()
-        if instance:
-            return instance, False
-        else:
-            params = dict((k, v) for k, v in kwargs.items() if not isinstance(v, ClauseElement))
-            params.update(defaults or {})
-            instance = model(**params)
-            self.session.add(instance)
-            return instance, True
+        with self.session.no_autoflush:
+            instance = self.session.query(model).filter_by(**kwargs).first()
+            if instance:
+                return instance, False
+            else:
+                params = dict((k, v) for k, v in kwargs.items() if not isinstance(v, ClauseElement))
+                params.update(defaults or {})
+                instance = model(**params)
+                self.session.add(instance)
+                self.session.commit()
+                return instance, True
 
 
 """-----------------------------Exceptions---------------------"""

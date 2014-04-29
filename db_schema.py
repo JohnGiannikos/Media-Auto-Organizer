@@ -1,7 +1,7 @@
 __author__ = 'john'
 
 
-from sqlalchemy import Column, Integer, String , Float, Date, ForeignKey
+from sqlalchemy import Column, Integer, String , Float, Date, ForeignKey, Table
 from sqlalchemy.orm import relationship, backref
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -10,6 +10,11 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+genre_association_table = Table('genre_m2m', Base.metadata,
+    Column('left_id', Integer, ForeignKey('files.id')),
+    Column('right_id', Integer, ForeignKey('genres.id'))
+)
+
 
 class File(Base):
     __tablename__ = 'files'
@@ -17,7 +22,7 @@ class File(Base):
     id = Column(Integer, primary_key=True)
     type = Column("type", Integer)
     path = Column(String)
-    genres = relationship("GenreM2M", backref="files")
+    genres = relationship("Genre", secondary=genre_association_table, backref="files")
     persons = relationship("PersonM2M", backref="files")
 
     __mapper_args__ = {'polymorphic_on': type}
@@ -70,11 +75,14 @@ class Genre(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
 
+
+"""
 class GenreM2M(Base):
     __tablename__='genre_m2m'
     file_id = Column(Integer, ForeignKey('files.id'), primary_key=True)
     genre_id = Column(Integer, ForeignKey('genres.id'), primary_key=True)
     genre = relationship("Genre", backref="file_assocs")
+"""
 
 class Person(Base):
     __tablename__ = 'persons'
