@@ -12,11 +12,13 @@ Base = declarative_base()
 
 
 class File(Base):
+    __tablename__ = 'files'
+
     id = Column(Integer, primary_key=True)
     media_id = Column(Integer, ForeignKey('media.id'))
     path = Column(String)
     size = Column(Integer)
-    metadata = relationship('Media', backref="files")
+    media = relationship('Media', backref="files")
 
 
 genre_association_table = Table('genre_m2m', Base.metadata,

@@ -16,20 +16,22 @@ class MediaScanner():
         self.paths = list()
         self.files = list()
 
-    def analyze_video(self ):
+    def analyze_video(self):
 
         with OpenSubtitles() as op:
-            opinfo = op.get_video_info(*[(x,x.path) for x in self.paths])
+            osinfo = op.get_video_info(lambda x:x.path, *self.files)
 
-        for v in opinfo:
+        recognized_files = list()
+
+        for f in osinfo:
             try :
-                metadata=self.extract_opensubtitles_data(v)
-
-                file.path = v["path"]
-                self.files.append(file)
+                file = f["file"]
+                file.media = self.extract_opensubtitles_data(f["data"])
+                recognized_files.append(file)
             except TypeError as e:
                 logging.error("Error extracting data from opensubtitles" + str(e))
                 continue
+        return recognized_files
 
     def extract_opensubtitles_data(self, data):
         if data["MovieKind"] == "episode":
@@ -44,41 +46,42 @@ class MediaScanner():
             raise TypeError("uknown video type")
 
 
-    def update_metadata_imdb(self):
+    def update_metadata_imdb(self,*files):
         imdb = imdbpie.Imdb()
 
-        for file in self.files:
-            data = imdb.find_movie_by_id(file.imdbid)
-            file.title = data.title
-            file.tagline = data.tagline
-            file.rating = data.rating
-            file.year = data.year
-            file.release_date = datetime.strptime(data.release_date, '%Y-%m-%d').date()
-            file.plot_outline = data.plot_outline
-            file.runtime = data.runtime
-            file.cover_url = data.cover_url
-            file.poster_url = data.poster_url
+        for media in files:
+            media = media.media
+            data = imdb.find_movie_by_id(media.imdbid)
+            media.title = data.title
+            media.tagline = data.tagline
+            media.rating = data.rating
+            media.year = data.year
+            media.release_date = datetime.strptime(data.release_date, '%Y-%m-%d').date()
+            media.plot_outline = data.plot_outline
+            media.runtime = data.runtime
+            media.cover_url = data.cover_url
+            media.poster_url = data.poster_url
 
 
             for genre in data.genres:
-                self.db.add_genre(file,genre)
+                self.db.add_genre(media,genre)
 
 
             for director in data.directors_summary:
-                self.db.add_person(file,director.name,'Director', director.imdb_id)
+                self.db.add_person(media,director.name,'Director', director.imdb_id)
 
             for writer in data.writers_summary:
-                self.db.add_person(file,writer.name,'Writer', writer.imdb_id)
+                self.db.add_person(media,writer.name,'Writer', writer.imdb_id)
 
             for cast in data.cast_summary:
-                self.db.add_person(file,cast.name,'Cast', cast.imdb_id)
+                self.db.add_person(media,cast.name,'Cast', cast.imdb_id)
 
-            if type(file) == Episode:
+            if type(media) == Episode:
                 series = self.db.create_series(data.data["series"]["tconst"], data.data["series"]["title"],
                                             data.data["series"]["year"],  data.data["series"]["image"]["url"])
-                file.series = series
+                media.series = series
 
-            self.db.save_file(file)
+            self.db.save_file(media)
 
     def scan_all_files_under_folder(self,path,minSize=0,ignoreExistingFiles=True):
 
@@ -91,17 +94,17 @@ class MediaScanner():
                     rec = self.db.create_file(path = full_path,
                                               size = os.stat(full_path).st_size)
                     if rec.size>= minSize:
-                        self.paths.append(rec)
+                        self.files.append(rec)
         logging.info("Found %d files" % len(self.paths))
 
     def filter_video(self):
-        self.paths = [x for x in self.paths if get_filetype(x)=='video']
+        self.paths = [x for x in self.paths if get_filetype(x.path)=='video']
 
     def analyze_files(self):
         logging.info("Recongnizing files")
-        self.analyze_video()
+        recognized = self.analyze_video()
         logging.info("Get more metadata")
-        self.update_metadata_imdb()
+        self.update_metadata_imdb(*recognized)
 
 def get_filetype(path):
 
@@ -118,8 +121,6 @@ def get_filetype(path):
             return False
         fileMimeType = fileMimeType.split('/', 1)
         return fileMimeType[0]
-
-
 
 
 def is_video(path):
