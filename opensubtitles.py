@@ -66,9 +66,9 @@ class OpenSubtitles():
 
 
 
-    def get_video_info(self,*paths):
+    def get_video_info(self,*files, use_lambda=None):
         video = list()
-        hashes = [self.hash(x) for x in paths]
+        hashes = [self.hash(use_lambda(x)) for x in files]
 
         found_info = self.server.CheckMovieHash(self.session["token"],hashes)
 
@@ -76,7 +76,7 @@ class OpenSubtitles():
 
         for i,h in enumerate(hashes):
             if h in found_info["data"] and type(found_info["data"][h]) is dict:
-                tmp = {"path" : paths[i] }
+                tmp = {"file" : files[i] }
                 tmp.update(found_info["data"][h])
                 info.append(tmp)
 

@@ -19,6 +19,9 @@ class Database():
         Session.configure(bind=self.engine)
         self.session = Session(autocommit=False)
 
+    def create_file(self,**kwargs):
+        return File(**kwargs)
+
     def create_episode(self,**kwargs):
         return Episode(**kwargs)
 

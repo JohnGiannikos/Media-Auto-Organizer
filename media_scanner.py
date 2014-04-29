@@ -19,13 +19,12 @@ class MediaScanner():
     def analyze_video(self ):
 
         with OpenSubtitles() as op:
-            opinfo = op.get_video_info(*[x["path"] for x in self.paths])
-
-        info = list()
+            opinfo = op.get_video_info(*[(x,x.path) for x in self.paths])
 
         for v in opinfo:
             try :
-                file=self.extract_opensubtitles_data(v)
+                metadata=self.extract_opensubtitles_data(v)
+
                 file.path = v["path"]
                 self.files.append(file)
             except TypeError as e:
@@ -81,7 +80,7 @@ class MediaScanner():
 
             self.db.save_file(file)
 
-    def scan_all_files_under_folder(self,path,minSize=0):
+    def scan_all_files_under_folder(self,path,minSize=0,ignoreExistingFiles=True):
 
         self.paths = list()
 
@@ -89,26 +88,20 @@ class MediaScanner():
             if files:
                 for file in files:
                     full_path = os.path.join(root,file)
-                    rec = {"path" : full_path,
-                           "size" : os.stat(full_path).st_size,
-                           "type" : get_filetype(full_path)
-                    }
-                    if rec["size"]>= minSize:
+                    rec = self.db.create_file(path = full_path,
+                                              size = os.stat(full_path).st_size)
+                    if rec.size>= minSize:
                         self.paths.append(rec)
         logging.info("Found %d files" % len(self.paths))
 
     def filter_video(self):
-        self.paths = [x for x in self.paths if x['type']=='video']
+        self.paths = [x for x in self.paths if get_filetype(x)=='video']
 
     def analyze_files(self):
+        logging.info("Recongnizing files")
         self.analyze_video()
+        logging.info("Get more metadata")
         self.update_metadata_imdb()
-        logging.info("Starting to save files")
-        #for file in self.files:
-         #   self.db.save_file(file)
-
-
-
 
 def get_filetype(path):
 

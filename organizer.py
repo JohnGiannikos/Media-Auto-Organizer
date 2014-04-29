@@ -28,8 +28,8 @@ class Organizer ():
 if __name__ == "__main__":
 
     org = Organizer()
-    files = org.organize_folder("/home/john/mount/samba/DATA-SERVER/Data/Torrents/Completed")
-    #files = org.organize_folder("/home/john/test movies")
+    #files = org.organize_folder("/home/john/mount/samba/DATA-SERVER/Data/Torrents/Completed")
+    files = org.organize_folder("/home/john/test movies")
     #files = org.load("sample.pickle")
     #db = persistence.Database()
     #db.save_episodes(*files)

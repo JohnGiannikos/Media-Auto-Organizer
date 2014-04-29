@@ -10,28 +10,35 @@ from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
+
+class File(Base):
+    id = Column(Integer, primary_key=True)
+    media_id = Column(Integer, ForeignKey('media.id'))
+    path = Column(String)
+    size = Column(Integer)
+    metadata = relationship('Media', backref="files")
+
+
 genre_association_table = Table('genre_m2m', Base.metadata,
-    Column('left_id', Integer, ForeignKey('files.id')),
+    Column('left_id', Integer, ForeignKey('media.id')),
     Column('right_id', Integer, ForeignKey('genres.id'))
 )
 
-
-class File(Base):
-    __tablename__ = 'files'
+class Media(Base):
+    __tablename__ = 'media'
 
     id = Column(Integer, primary_key=True)
     type = Column("type", Integer)
-    path = Column(String)
-    genres = relationship("Genre", secondary=genre_association_table, backref="files")
-    persons = relationship("PersonM2M", backref="files")
+    genres = relationship("Genre", secondary=genre_association_table, backref="media")
+    persons = relationship("PersonM2M", backref="media")
 
     __mapper_args__ = {'polymorphic_on': type}
 
 
-class Movie(File):
+class Movie(Media):
     __tablename__ = 'movies'
     __mapper_args__ = {'polymorphic_identity': 1}
-    movie_id = Column('id',Integer,ForeignKey('files.id'), primary_key=True)
+    movie_id = Column('id',Integer,ForeignKey('media.id'), primary_key=True)
     imdbid = Column(String, unique=True,primary_key=True)
     tagline = Column(String)
     title = Column(String)
@@ -52,10 +59,10 @@ class Series(Base):
     image_url = Column(String)
     episodes = relationship("Episode",backref="series")
 
-class Episode(File):
+class Episode(Media):
     __tablename__ = 'episodes'
     __mapper_args__ = {'polymorphic_identity': 2}
-    episode_id = Column('id',Integer,ForeignKey('files.id'), primary_key=True)
+    episode_id = Column('id',Integer,ForeignKey('media.id'), primary_key=True)
     imdbid = Column(String, unique=True,primary_key=True)
     series_id = Column(Integer,ForeignKey('series.id'))
     season = Column(Integer)
@@ -76,14 +83,6 @@ class Genre(Base):
     name = Column(String)
 
 
-"""
-class GenreM2M(Base):
-    __tablename__='genre_m2m'
-    file_id = Column(Integer, ForeignKey('files.id'), primary_key=True)
-    genre_id = Column(Integer, ForeignKey('genres.id'), primary_key=True)
-    genre = relationship("Genre", backref="file_assocs")
-"""
-
 class Person(Base):
     __tablename__ = 'persons'
     id = Column(Integer,primary_key=True)
@@ -93,11 +92,11 @@ class Person(Base):
 class PersonM2M(Base):
     __tablename__='person_m2m'
     id = Column(Integer,primary_key=True)
-    file_id = Column(Integer, ForeignKey('files.id'))
+    file_id = Column(Integer, ForeignKey('media.id'))
     person_id = Column(Integer, ForeignKey('persons.id'))
     job_id = Column(Integer,ForeignKey('jobs.id'))
     job = relationship('Job')
-    person = relationship("Person", backref="file_assocs")
+    person = relationship("Person", backref="media_assocs")
 
 class Job(Base):
     __tablename__ = "jobs"
