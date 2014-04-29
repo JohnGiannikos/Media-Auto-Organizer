@@ -10,9 +10,7 @@ from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
 
-
 class Database():
-
     def __init__(self):
         self.engine = create_engine('sqlite:///test.db', echo=True)
         Base.metadata.drop_all(self.engine)
@@ -21,77 +19,65 @@ class Database():
         Session.configure(bind=self.engine)
         self.session = Session()
 
+    def create_episode(self,**kwargs):
+        return Episode(**kwargs)
 
+    def create_movie(self,**kwargs):
+        return Movie(**kwargs)
 
+    def create_series(self,imdbid,title,year,image_url):
+        series,_ =  self.get_or_create(Series, imdbid=imdbid, title=title, year=year, image_url=image_url)
+        return series
 
-    def create_episode(self,episode):
-        pass
+    def add_person(self,file,name,job,imdbid=None):
+        person,_ = self.get_or_create(Person, imdbid=imdbid, name=name)
+        job, _ = self.get_or_create(Job, description=job)
 
-    def create_movie(self, movie):
-        title = movie["info"]
-
-        if title.type == 'tv_episode':
-            raise IsEpisode()
-        #General Info
-        rec =  Movie(path=movie["path"], imdbid=title.imdb_id,title=title.title, rating=title.rating, year=title.year ,
-                    tagline=title.tagline, release_date=datetime.strptime(title.release_date,'%Y-%m-%d').date(),
-                    plot_outline=title.plot_outline,runtime=title.runtime, cover_url=title.cover_url)
-
-        #Genre
-        for genre in title.genres:
-            new_genre,_ = self.get_or_create(Genre,name=genre)
-            asc = GenreM2M()
-            asc.genre = new_genre
-            rec.genres.append(asc)
-
-        #Directors
-        director_job,_= self.get_or_create(Job,description="Director")
-        for director in title.directors_summary:
-            asc =  self.create_person_association(director,director_job)
-            rec.persons.append(asc)
-
-        #Writers
-        writer_job,_= self.get_or_create(Job,description="Writer")
-        for writer in title.directors_summary:
-            asc =  self.create_person_association(writer,writer_job)
-            rec.persons.append(asc)
-
-        #Cast
-        cast_job,_= self.get_or_create(Job,description="Cast")
-        for cast in title.cast_summary:
-            asc =  self.create_person_association(cast,cast_job)
-            rec.persons.append(asc)
-
-
-        return rec
-
-
-    def create_person_association(self, person,job):
-        person,_ = self.get_or_create(Person,imdbid=person.imdb_id, name=person.name)
         asc = PersonM2M()
         asc.job = job
-        asc.person= person
-        return asc
+        asc.person = person
+
+        file.persons.append(asc)
+
+    def add_genre(self,file,name):
+        new_genre, _ = self.get_or_create(Genre, name=name)
+        asc = GenreM2M()
+        asc.genre = new_genre
+        file.genres.append(asc)
 
 
-    def save_movie(self,*movies):
+    def save_movies(self, *movies):
         for movie in movies:
             try:
-                rec = self.create_movie(movie)
-                self.session.add(rec)
-                self.session.commit()
-                rec = self.create_movie(movie)
+                rec = self.create_movie_obj(movie)
                 self.session.add(rec)
                 self.session.commit()
             except IntegrityError as e:
-                logging.warning("Movie with imdbid:" + movie["imdbid"]+ " exists")
+                logging.warning("Movie with imdbid:" + movie["imdbid"] + " exists")
                 self.session.rollback()
             except IsEpisode:
-                logging.warning("Movie with imdbid:" + movie["imdbid"]+ " is classified as movie but it is episode")
-                self.create_episode(movie)
+                logging.warning("Movie with imdbid:" + movie["imdbid"] + " is classified as movie but it is episode")
+                self.session.rollback()
+                self.save_episodes(movie)
 
+    def save_episodes(self, *episodes):
+        for episode in episodes:
+            try:
+                rec = self.create_episode_obj(episode)
+                self.session.add(rec)
+                self.session.commit()
+            except IntegrityError as e:
+                logging.warning("Episode with imdbid:" + episode["imdbid"] + "Integrity error: " + str(e))
+                self.session.rollback()
+            except IsMovie:
+                logging.warning("Movie with imdbid:" + episode["imdbid"] + " is classified as movie but it is episode")
+                self.session.rollback()
+                #continue
+                self.save_movies(episode)
 
-
+    def save_file(self,file):
+        self.session.add(file)
+        self.session.commit()
 
     def get_or_create(self, model, defaults=None, **kwargs):
         instance = self.session.query(model).filter_by(**kwargs).first()
@@ -107,7 +93,10 @@ class Database():
 
 """-----------------------------Exceptions---------------------"""
 
+
 class IsEpisode(Exception): pass
+
+
 class IsMovie(Exception): pass
 
 

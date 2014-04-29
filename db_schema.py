@@ -36,7 +36,34 @@ class Movie(File):
     release_date = Column(Date)
     plot_outline = Column(String)
     cover_url = Column(String)
+    poster_url = Column(String)
 
+class Series(Base):
+    __tablename__ = 'series'
+    id = Column(Integer, primary_key=True)
+    imdbid = Column(String, unique=True)
+    title = Column(String)
+    year = Column(Integer)
+    image_url = Column(String)
+    episodes = relationship("Episode",backref="series")
+
+class Episode(File):
+    __tablename__ = 'episodes'
+    __mapper_args__ = {'polymorphic_identity': 2}
+    episode_id = Column('id',Integer,ForeignKey('files.id'), primary_key=True)
+    imdbid = Column(String, unique=True,primary_key=True)
+    series_id = Column(Integer,ForeignKey('series.id'))
+    season = Column(Integer)
+    episode_no = Column(Integer)
+    tagline = Column(String)
+    title = Column(String)
+    rating = Column(Float)
+    year = Column(Integer)
+    runtime = Column(String)
+    release_date = Column(Date)
+    plot_outline = Column(String)
+    cover_url = Column(String)
+    poster_url = Column(String)
 
 class Genre(Base):
     __tablename__= 'genres'

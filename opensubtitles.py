@@ -65,56 +65,23 @@ class OpenSubtitles():
         return returnedhash
 
 
-    def is_video(self,path):
-        """Check mimetype and/or file extension to detect valid video file
-            !!!!!!!!!!!mime guessing is slow!!!!!!!!!!
-        """
-        if os.path.isfile(path) == False:
-            print("error", "", "This is not a file:\n<i>" + path + "</i>")
-            return False
-
-        #fileMimeType, encoding = mimetypes.guess_type(path)
-        fileMimeType = None
-        if fileMimeType == None:
-            fileExtension = path.rsplit('.', 1)
-            if fileExtension[1] not in ['3g2', '3gp', '3gp2', '3gpp', 'ajp', \
-            'asf', 'asx', 'avchd', 'avi', 'bik', 'bix', 'box', 'cam', 'dat', \
-            'divx', 'dmf', 'dv', 'dvr-ms', 'evo', 'flc', 'fli', 'flic', 'flv', \
-            'flx', 'gvi', 'gvp', 'h264', 'm1v', 'm2p', 'm2ts', 'm2v', 'm4e', \
-            'm4v', 'mjp', 'mjpeg', 'mjpg', 'mkv', 'moov', 'mov', 'movhd', 'movie', \
-            'movx', 'mp4', 'mpe', 'mpeg', 'mpg', 'mpv', 'mpv2', 'mxf', 'nsv', \
-            'nut', 'ogg', 'ogm', 'ogv', 'omf', 'ps', 'qt', 'ram', 'rm', 'rmvb', \
-            'swf', 'ts', 'vfw', 'vid', 'video', 'viv', 'vivo', 'vob', 'vro', \
-            'webm', 'wm', 'wmv', 'wmx', 'wrap', 'wvx', 'wx', 'x264', 'xvid']:
-                logging.info("This file is not a video (unknown mimetype AND invalid file extension):\n<i>" + path + "</i>")
-                return False
-        else:
-            fileMimeType = fileMimeType.split('/', 1)
-            if fileMimeType[0] != 'video':
-                logging.info( "This file is not a video (unknown mimetype):<i>" + path + "</i>")
-                return False
-
-        return True
 
     def get_video_info(self,*paths):
         video = list()
-        for path in paths:
-            if self.is_video(path):
-                video.append({ "path" : path,
-                               "hash" : self.hash(path)
-                })
+        hashes = [self.hash(x) for x in paths]
 
-        found_info = self.server.CheckMovieHash(self.session["token"],[x["hash"] for x in video])
+        found_info = self.server.CheckMovieHash(self.session["token"],hashes)
 
         info = list()
 
-        for v in video:
-            if v["hash"] in found_info["data"] and type(found_info["data"][v["hash"]]) is dict:
-                tmp = {"path" : v["path"],
-                       "imdbid" : "tt" + found_info["data"][v["hash"]]["MovieImdbID"] }
-
+        for i,h in enumerate(hashes):
+            if h in found_info["data"] and type(found_info["data"][h]) is dict:
+                tmp = {"path" : paths[i] }
+                tmp.update(found_info["data"][h])
                 info.append(tmp)
+
         return info
+
 
     def __enter__(self):
         self.login()
