@@ -23,10 +23,12 @@ class Database():
         return File(**kwargs)
 
     def create_episode(self,**kwargs):
-        return Episode(**kwargs)
+        episode,_ =  self.get_or_create(Episode, **kwargs)
+        return episode
 
     def create_movie(self,**kwargs):
-        return Movie(**kwargs)
+        movie,_ =  self.get_or_create(Movie, **kwargs)
+        return movie
 
     def create_series(self,imdbid,title,year,image_url):
         series,_ =  self.get_or_create(Series, imdbid=imdbid, title=title, year=year, image_url=image_url)
@@ -45,35 +47,6 @@ class Database():
     def add_genre(self,file,name):
         new_genre, _ = self.get_or_create(Genre, name=name)
         file.genres.append(new_genre)
-
-    def save_movies(self, *movies):
-        for movie in movies:
-            try:
-                rec = self.create_movie_obj(movie)
-                self.session.add(rec)
-                self.session.commit()
-            except IntegrityError as e:
-                logging.warning("Movie with imdbid:" + movie["imdbid"] + " exists")
-                self.session.rollback()
-            except IsEpisode:
-                logging.warning("Movie with imdbid:" + movie["imdbid"] + " is classified as movie but it is episode")
-                self.session.rollback()
-                self.save_episodes(movie)
-
-    def save_episodes(self, *episodes):
-        for episode in episodes:
-            try:
-                rec = self.create_episode_obj(episode)
-                self.session.add(rec)
-                self.session.commit()
-            except IntegrityError as e:
-                logging.warning("Episode with imdbid:" + episode["imdbid"] + "Integrity error: " + str(e))
-                self.session.rollback()
-            except IsMovie:
-                logging.warning("Movie with imdbid:" + episode["imdbid"] + " is classified as movie but it is episode")
-                self.session.rollback()
-                #continue
-                self.save_movies(episode)
 
     def save_file(self,file):
         try:

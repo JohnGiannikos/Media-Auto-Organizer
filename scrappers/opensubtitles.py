@@ -2,7 +2,6 @@ from xmlrpc.client import ServerProxy, Error
 
 import struct
 import os
-import mimetypes
 import logging
 import time
 
@@ -66,22 +65,17 @@ class OpenSubtitles():
 
 
 
-    def get_video_info(self, use_lambda=None, *files):
-        if not use_lambda:
-            use_lambda=lambda  x:x
+    def get_video_info(self, *paths):
 
-        hashes = [self.hash(use_lambda(x)) for x in files]
+        hashes = [self.hash(x) for x in paths]
 
-        found_info = self.server.CheckMovieHash(self.session["token"],hashes)
+        found_info = self.server.CheckMovieHash(self.session["token"], hashes)
 
-        info = list()
+        info = dict()
 
         for i,h in enumerate(hashes):
             if h in found_info["data"] and type(found_info["data"][h]) is dict:
-                tmp = {"file" : files[i] ,
-                       "data" :found_info["data"][h]}
-                info.append(tmp)
-
+                info[paths[i]] = found_info["data"][h]
         return info
 
 

@@ -1,12 +1,11 @@
 __author__ = 'john'
 
 
-from sqlalchemy import Column, Integer, String , Float, Date, ForeignKey, Table
+from sqlalchemy import Column, Integer, String , Float, Date, DateTime, ForeignKey, Table
 from sqlalchemy.orm import relationship, backref
-
 from sqlalchemy.ext.declarative import declarative_base
 
-
+from datetime import  datetime
 
 Base = declarative_base()
 
@@ -16,8 +15,9 @@ class File(Base):
 
     id = Column(Integer, primary_key=True)
     media_id = Column(Integer, ForeignKey('media.id'))
-    path = Column(String)
+    path = Column(String, unique=True)
     size = Column(Integer)
+    date_imported = Column(DateTime, default=datetime.now)
     media = relationship('Media', backref="files")
 
 

@@ -3,8 +3,6 @@ __author__ = 'john'
 import media_scanner
 import persistence
 
-import pickle
-
 class Organizer ():
 
     def __init__(self):
@@ -17,13 +15,6 @@ class Organizer ():
         scanner.filter_video()
         scanner.analyze_files()
 
-    def save(self,filename,data):
-        with open(filename, 'wb') as handle:
-            pickle.dump(data, handle)
-
-    def load(self,filename):
-        with open(filename, 'rb') as handle:
-            return  pickle.load(handle)
 
 if __name__ == "__main__":
 
