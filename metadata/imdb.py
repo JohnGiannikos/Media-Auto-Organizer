@@ -1,7 +1,7 @@
 __author__ = 'john'
 
 from scrappers import imdbpie
-from db_schema import *
+from persistance.db_schema import *
 from .metadata import Metadata
 
 
@@ -45,4 +45,4 @@ class Imdb(Metadata):
                                             data.data["series"]["year"],  data.data["series"]["image"]["url"])
                 media.series = series
 
-        self.db.save_file(media)
+        #self.db.save_file(media)

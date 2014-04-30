@@ -5,7 +5,6 @@ import os
 from identifiers import opensubtitles
 from metadata import imdb
 import logging
-import mimetypes
 
 class MediaScanner():
 
@@ -30,58 +29,20 @@ class MediaScanner():
                         self.files.append(rec)
         logging.info("Found %d files" % len(self.paths))
 
+    def filter_old(self):
+        self.files = [f for f in self.files if len(self.db.find_files(path=f.path))==0]
+
     def filter_video(self):
-        self.paths = [x for x in self.paths if get_filetype(x.path)=='video']
+        self.files = [f for f in self.files if self.identifier.get_filetype(f.path)=='video']
 
     def analyze_files(self):
         logging.info("Recongnizing files")
         #recognize
-        recognized = self.identifier.analyze_video(*self.files)
+        recognized , new = self.identifier.analyze_video(*self.files)
         logging.info("Get more metadata")
-        self.metadata.update_metadata(*recognized)
-
-
-
-
-def get_filetype( path):
-
-    if not os.path.isfile(path):
-        logging.error("This is not a file:" + path )
-        return False
-
-    if is_video(path):
-        return 'video'
-    else:
-        logging.info("File " + path + " has unknown extension. Guessing mime type")
-        fileMimeType, encoding = mimetypes.guess_type(path)
-        if fileMimeType == None:
-            return False
-        fileMimeType = fileMimeType.split('/', 1)
-        return fileMimeType[0]
-
-def is_video(path):
-
-    fileExtension = path.rsplit('.', 1)
-    if len(fileExtension)==1:
-        return False
-    if fileExtension[1]  in ['3g2', '3gp', '3gp2', '3gpp', 'ajp', \
-    'asf', 'asx', 'avchd', 'avi', 'bik', 'bix', 'box', 'cam', 'dat', \
-    'divx', 'dmf', 'dv', 'dvr-ms', 'evo', 'flc', 'fli', 'flic', 'flv', \
-    'flx', 'gvi', 'gvp', 'h264', 'm1v', 'm2p', 'm2ts', 'm2v', 'm4e', \
-    'm4v', 'mjp', 'mjpeg', 'mjpg', 'mkv', 'moov', 'mov', 'movhd', 'movie', \
-    'movx', 'mp4', 'mpe', 'mpeg', 'mpg', 'mpv', 'mpv2', 'mxf', 'nsv', \
-    'nut', 'ogg', 'ogm', 'ogv', 'omf', 'ps', 'qt', 'ram', 'rm', 'rmvb', \
-    'swf', 'ts', 'vfw', 'vid', 'video', 'viv', 'vivo', 'vob', 'vro', \
-    'webm', 'wm', 'wmv', 'wmx', 'wrap', 'wvx', 'wx', 'x264', 'xvid']:
-        return True
-    else:
-        logging.info("This file is not a video (unknown mimetype AND invalid file extension):\n<i>" + path + "</i>")
-        return False
-
-
-
-
-
+        self.metadata.update_metadata(*new)
+        for file in recognized:
+            self.db.save_file(file)
 
 
 

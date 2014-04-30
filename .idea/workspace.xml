@@ -2,23 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6d81fe2-2a07-4220-b162-3a2fdaa72a3d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/identifiers/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/metadata/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scrappers/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/identifiers/identifier.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/metadata/imdb.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/metadata/metadata.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/identifiers/opensubtitles.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/persistance/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/filesystem_sorter.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/sample.pickle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/submodules/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/submodules/imdbpie" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/opensubtitles.py" afterPath="$PROJECT_DIR$/scrappers/opensubtitles.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/submodules/repos/imdb-pie" afterPath="$PROJECT_DIR$/submodules/imdb-pie" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitmodules" afterPath="$PROJECT_DIR$/.gitmodules" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db_schema.py" afterPath="$PROJECT_DIR$/db_schema.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/db_schema.py" afterPath="$PROJECT_DIR$/persistance/db_schema.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/persistence.py" afterPath="$PROJECT_DIR$/persistance/database.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/metadata/imdb.py" afterPath="$PROJECT_DIR$/metadata/imdb.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media_scanner.py" afterPath="$PROJECT_DIR$/media_scanner.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/identifiers/opensubtitles.py" afterPath="$PROJECT_DIR$/identifiers/opensubtitles.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/organizer.py" afterPath="$PROJECT_DIR$/organizer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/persistence.py" afterPath="$PROJECT_DIR$/persistence.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Media-Auto-Organizer.iws" />
@@ -42,13 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="organizer.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="organizer.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/organizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-              <folding>
-                <element signature="e#21#41#0" expanded="true" />
-              </folding>
+            <state line="24" column="4" selection-start="465" selection-end="465" vertical-scroll-proportion="0.63829786" vertical-offset="0" max-vertical-offset="570">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,7 +46,7 @@
       <file leaf-file-name="media_scanner.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/media_scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1455">
+            <state line="46" column="0" selection-start="1473" selection-end="1473" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="870">
               <folding>
                 <element signature="e#21#30#0" expanded="true" />
               </folding>
@@ -64,10 +54,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="imdb.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="imdb.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metadata/imdb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="8" selection-start="139" selection-end="139" vertical-scroll-proportion="-0.23134328" vertical-offset="259" max-vertical-offset="795">
+            <state line="15" column="27" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
               <folding>
                 <element signature="e#21#50#0" expanded="true" />
               </folding>
@@ -78,60 +68,18 @@
       <file leaf-file-name="opensubtitles.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/identifiers/opensubtitles.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-              <folding>
-                <element signature="e#22#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="metadata.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/metadata/metadata.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+            <state line="32" column="45" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="identifier.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/identifiers/identifier.py">
+      <file leaf-file-name="database.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/persistance/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="100" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+            <state line="13" column="9" selection-start="364" selection-end="364" vertical-scroll-proportion="-5.131579" vertical-offset="0" max-vertical-offset="1365">
               <folding>
-                <element signature="e#21#56#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="persistence.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/persistence.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="12" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0" vertical-offset="739" max-vertical-offset="1275">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_schema.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db_schema.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="45" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1680">
-              <folding>
-                <element signature="e#22#111#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="opensubtitles.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scrappers/opensubtitles.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="12" selection-start="303" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
+                <element signature="e#20#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,12 +106,14 @@
         <option value="$PROJECT_DIR$/db_schema.py" />
         <option value="$PROJECT_DIR$/identifiers/identifiers.py" />
         <option value="$PROJECT_DIR$/identifiers/identifier.py" />
-        <option value="$PROJECT_DIR$/identifiers/opensubtitles.py" />
-        <option value="$PROJECT_DIR$/media_scanner.py" />
-        <option value="$PROJECT_DIR$/metadata/imdb.py" />
-        <option value="$PROJECT_DIR$/organizer.py" />
         <option value="$PROJECT_DIR$/scrappers/opensubtitles.py" />
         <option value="$PROJECT_DIR$/metadata/metadata.py" />
+        <option value="$PROJECT_DIR$/filesystem_sorter.py" />
+        <option value="$PROJECT_DIR$/identifiers/opensubtitles.py" />
+        <option value="$PROJECT_DIR$/metadata/imdb.py" />
+        <option value="$PROJECT_DIR$/persistance/database.py" />
+        <option value="$PROJECT_DIR$/media_scanner.py" />
+        <option value="$PROJECT_DIR$/organizer.py" />
       </list>
     </option>
   </component>
@@ -199,6 +149,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,41 +178,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="submodules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Media-Auto-Organizer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Media-Auto-Organizer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="metadata" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Media-Auto-Organizer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Media-Auto-Organizer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="identifiers" />
+              <option name="myItemId" value="scrappers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -275,6 +197,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/persistance" />
       <recent name="$PROJECT_DIR$/scrappers" />
       <recent name="$PROJECT_DIR$/identifiers" />
       <recent name="$PROJECT_DIR$" />
@@ -446,7 +369,11 @@
       <created>1398811671140</created>
       <updated>1398811671140</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="refactoring , again :p">
+      <created>1398871623223</created>
+      <updated>1398871623223</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -454,42 +381,42 @@
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32996634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39955106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32996634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -507,20 +434,88 @@
     </option>
     <MESSAGE value="in progress for db design update but disaster happen, saving progress" />
     <MESSAGE value="db updated, multiple files can point to single media" />
-    <option name="LAST_COMMIT_MESSAGE" value="db updated, multiple files can point to single media" />
+    <MESSAGE value="refactoring , again :p" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring , again :p" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="21" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/organizer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="4" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="660">
+        <state line="17" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_scanner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1455">
           <folding>
-            <element signature="e#21#41#0" expanded="true" />
+            <element signature="e#21#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metadata/imdb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="1047" selection-end="1047" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="795">
+          <folding>
+            <element signature="e#21#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/identifiers/opensubtitles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metadata/metadata.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/identifiers/identifier.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="100" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistance/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="12" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1395">
+          <folding>
+            <element signature="e#20#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistance/db_schema.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="45" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1680">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrappers/opensubtitles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="12" selection-start="303" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1470">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/organizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="4" selection-start="765" selection-end="765" vertical-scroll-proportion="0.0" vertical-offset="465" max-vertical-offset="660">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -536,43 +531,37 @@
     <entry file="file://$PROJECT_DIR$/identifiers/opensubtitles.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-          <folding>
-            <element signature="e#22#36#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/identifiers/identifier.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="810">
-          <folding>
-            <element signature="e#21#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/persistence.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="12" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1395">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_schema.py">
+    <entry file="file://$PROJECT_DIR$/persistance/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="12" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1395">
+          <folding>
+            <element signature="e#20#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistance/db_schema.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="45" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="1680">
-          <folding>
-            <element signature="e#22#111#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scrappers/opensubtitles.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="93" column="15" selection-start="2954" selection-end="2954" vertical-scroll-proportion="0.0" vertical-offset="1395" max-vertical-offset="1485">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -588,9 +577,7 @@
     <entry file="file://$PROJECT_DIR$/organizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-          <folding>
-            <element signature="e#21#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -599,21 +586,17 @@
         <state line="277" column="0" selection-start="11038" selection-end="11038" vertical-scroll-proportion="0.0" vertical-offset="4155" max-vertical-offset="8070" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_schema.py">
+    <entry file="file://$PROJECT_DIR$/persistance/db_schema.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="26" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="1680">
-          <folding>
-            <element signature="e#22#111#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scrappers/opensubtitles.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="0" selection-start="2482" selection-end="2482" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="1560">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -629,9 +612,7 @@
     <entry file="file://$PROJECT_DIR$/organizer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-          <folding>
-            <element signature="e#21#41#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -640,21 +621,17 @@
         <state line="277" column="0" selection-start="11038" selection-end="11038" vertical-scroll-proportion="0.0" vertical-offset="4155" max-vertical-offset="8070" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db_schema.py">
+    <entry file="file://$PROJECT_DIR$/persistance/db_schema.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="26" selection-start="283" selection-end="283" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="1680">
-          <folding>
-            <element signature="e#22#111#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scrappers/opensubtitles.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="0" selection-start="2482" selection-end="2482" vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="1560">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -663,80 +640,100 @@
         <state line="277" column="0" selection-start="11038" selection-end="11038" vertical-scroll-proportion="0.9574468" vertical-offset="3435" max-vertical-offset="7890" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/media_scanner.py">
+    <entry file="file://$PROJECT_DIR$/persistance/db_schema.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1455">
-          <folding>
-            <element signature="e#21#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/organizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <folding>
-            <element signature="e#21#41#0" expanded="true" />
-          </folding>
+        <state line="19" column="45" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1680">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/identifiers/identifier.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="100" selection-end="122" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <folding>
-            <element signature="e#21#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/persistence.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="12" selection-start="1551" selection-end="1551" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1275">
+        <state line="7" column="0" selection-start="100" selection-end="122" vertical-scroll-proportion="0.072289154" vertical-offset="0" max-vertical-offset="830">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_schema.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="45" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1680">
-          <folding>
-            <element signature="e#22#111#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scrappers/opensubtitles.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="12" selection-start="303" selection-end="303" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
+        <state line="15" column="12" selection-start="303" selection-end="303" vertical-scroll-proportion="-0.13297872" vertical-offset="225" max-vertical-offset="1395">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filesystem_sorter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="79" selection-end="79" vertical-scroll-proportion="0.1861702" vertical-offset="0" max-vertical-offset="564">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metadata/metadata.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
+        <state line="4" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.10638298" vertical-offset="0" max-vertical-offset="564">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/identifiers/opensubtitles.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-          <folding>
-            <element signature="e#22#36#0" expanded="true" />
-          </folding>
+        <state line="32" column="45" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/metadata/imdb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="8" selection-start="139" selection-end="139" vertical-scroll-proportion="-0.23134328" vertical-offset="259" max-vertical-offset="795">
+        <state line="15" column="27" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0" vertical-offset="231" max-vertical-offset="795">
           <folding>
             <element signature="e#21#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/media_scanner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="0" selection-start="1473" selection-end="1473" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="870">
+          <folding>
+            <element signature="e#21#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env/lib/python3.4/site-packages/sqlalchemy/engine/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="719" column="0" selection-start="28358" selection-end="28358" vertical-scroll-proportion="0.2960993" vertical-offset="10618" max-vertical-offset="27210">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env/lib/python3.4/site-packages/sqlalchemy/sql/elements.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="316" column="0" selection-start="9821" selection-end="9821" vertical-scroll-proportion="0.2960993" vertical-offset="4393" max-vertical-offset="51675">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/env/lib/python3.4/site-packages/sqlalchemy/engine/default.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="434" column="0" selection-start="15181" selection-end="15181" vertical-scroll-proportion="0.2960993" vertical-offset="6223" max-vertical-offset="14325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/persistance/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="9" selection-start="364" selection-end="364" vertical-scroll-proportion="-5.131579" vertical-offset="0" max-vertical-offset="1365">
+          <folding>
+            <element signature="e#20#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/organizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="4" selection-start="465" selection-end="465" vertical-scroll-proportion="0.63829786" vertical-offset="0" max-vertical-offset="570">
+          <folding />
         </state>
       </provider>
     </entry>

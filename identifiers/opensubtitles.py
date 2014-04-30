@@ -21,25 +21,28 @@ class Opensubtitles(Identifier):
                 osinfo = op.get_video_info(*[x.path for x in files])
 
             recognized = list()
+            new = list()
             for f in files:
                 if f.path in osinfo:
                     try:
-                        f.media = self.extract_opensubtitles_data(osinfo[f.path])
+                        f.media, isnew = self.extract_opensubtitles_data(osinfo[f.path])
+                        if isnew:
+                            new.append(f)
                         recognized.append(f)
                     except TypeError as e:
                         logging.error("Error extracting data from opensubtitles" + str(e))
                         continue
 
-            return recognized
+            return recognized, new
 
     def extract_opensubtitles_data(self, data):
         if data["MovieKind"] == "episode":
-            return self.db.create_episode(imdbid="tt"+data["MovieImdbID"],
+            return self.db.get_episode(imdbid="tt"+data["MovieImdbID"],
                                          season=int(data["SeriesSeason"]),
                                          episode_no=int(data["SeriesEpisode"]),
                                          year=int(data["MovieYear"]))
         elif data["MovieKind"] ==  "movie":
-            return self.db.create_movie(imdbid="tt"+data["MovieImdbID"],
+            return self.db.get_movie(imdbid="tt"+data["MovieImdbID"],
                                              year=int(data["MovieYear"]))
         else:
             raise TypeError("uknown video type")
