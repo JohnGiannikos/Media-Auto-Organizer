@@ -41,8 +41,16 @@ class Imdb(Metadata):
                 self.db.add_person(media,cast.name,'Cast', cast.imdb_id)
 
             if type(media) == Episode:
-                series = self.db.create_series(data.data["series"]["tconst"], data.data["series"]["title"],
-                                            data.data["series"]["year"],  data.data["series"]["image"]["url"])
-                media.series = series
+                series, is_new = self.db.create_series(data.data["series"]["tconst"])
+                if is_new:
+                    imdbdata = imdb.find_movie_by_id(series.imdbid)
+                    series.tagline = imdbdata.tagline
+                    series.title= imdbdata.title
+                    series.rating= imdbdata.rating
+                    series.year = imdbdata.year
+                    series.plot_outline = imdbdata.plot_outline
+                    series.cover_url = imdbdata.cover_url
+                    series.poster_url = imdbdata.poster_url
 
-        #self.db.save_file(media)
+
+                media.series = series

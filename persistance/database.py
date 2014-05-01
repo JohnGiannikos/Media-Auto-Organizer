@@ -11,8 +11,8 @@ from sqlalchemy.exc import IntegrityError
 class Database():
     def __init__(self):
         self.engine = create_engine('sqlite:///test.db', echo=True)
-        #Base.metadata.drop_all(self.engine)
-        #Base.metadata.create_all(self.engine)
+        Base.metadata.drop_all(self.engine)
+        Base.metadata.create_all(self.engine)
         Session = sessionmaker()
         Session.configure(bind=self.engine)
         self.session = Session(autocommit=False)
@@ -26,9 +26,8 @@ class Database():
     def get_movie(self,**kwargs):
         return self.get_or_create(Movie, **kwargs)
 
-    def create_series(self,imdbid,title,year,image_url):
-        series,_ =  self.get_or_create(Series, imdbid=imdbid, title=title, year=year, image_url=image_url)
-        return series
+    def create_series(self, imdbid):
+        return self.get_or_create(Series, imdbid=imdbid)
 
     def find_files(self,**kwargs):
         return self.session.query(File).filter_by(**kwargs).all()
@@ -68,15 +67,6 @@ class Database():
             self.session.add(instance)
             self.session.commit()
             return instance, True
-
-
-"""-----------------------------Exceptions---------------------"""
-
-
-class IsEpisode(Exception): pass
-
-
-class IsMovie(Exception): pass
 
 
 if __name__ == "__main__":

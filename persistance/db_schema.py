@@ -56,9 +56,13 @@ class Series(Base):
     __tablename__ = 'series'
     id = Column(Integer, primary_key=True)
     imdbid = Column(String, unique=True)
+    tagline = Column(String)
     title = Column(String)
+    rating = Column(Float)
     year = Column(Integer)
-    image_url = Column(String)
+    plot_outline = Column(String)
+    cover_url = Column(String)
+    poster_url = Column(String)
     episodes = relationship("Episode",backref="series")
 
 class Episode(Media):

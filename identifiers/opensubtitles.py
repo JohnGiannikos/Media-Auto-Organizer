@@ -11,11 +11,11 @@ class Opensubtitles(Identifier):
     def __init__(self, db):
         self.db = db
 
-    def identify_files(self, *file):
-        pass
+    def identify_files(self, *files):
+        return self.identify_video(*files)
 
 
-    def analyze_video(self, *files):
+    def identify_video(self, *files):
 
             with opensubtitles.OpenSubtitles() as op:
                 osinfo = op.get_video_info(*[x.path for x in files])
@@ -25,8 +25,8 @@ class Opensubtitles(Identifier):
             for f in files:
                 if f.path in osinfo:
                     try:
-                        f.media, isnew = self.extract_opensubtitles_data(osinfo[f.path])
-                        if isnew:
+                        f.media, is_new = self.extract_opensubtitles_data(osinfo[f.path])
+                        if is_new:
                             new.append(f)
                         recognized.append(f)
                     except TypeError as e:

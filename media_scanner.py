@@ -1,10 +1,11 @@
 __author__ = 'john'
 
 import os
+import logging
 
 from identifiers import opensubtitles
 from metadata import imdb
-import logging
+from views.tree import TreeView
 
 class MediaScanner():
 
@@ -38,11 +39,16 @@ class MediaScanner():
     def analyze_files(self):
         logging.info("Recongnizing files")
         #recognize
-        recognized , new = self.identifier.analyze_video(*self.files)
+        recognized , new = self.identifier.identify_files(*self.files)
         logging.info("Get more metadata")
         self.metadata.update_metadata(*new)
         for file in recognized:
             self.db.save_file(file)
+
+        fs = TreeView('/home/john/mount', self.db)
+        fs.update_view()
+        fs = fs
+
 
 
 
