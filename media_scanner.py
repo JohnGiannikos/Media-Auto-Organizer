@@ -6,6 +6,7 @@ import logging
 from identifiers import opensubtitles
 from metadata import imdb
 from views.tree import TreeView
+from  displays.filesystem_display import FilesystemDisplay
 
 class MediaScanner():
 
@@ -45,8 +46,11 @@ class MediaScanner():
         for file in recognized:
             self.db.save_file(file)
 
-        fs = TreeView('/home/john/mount', self.db)
-        fs.update_view()
+        fs = TreeView(self.db)
+        fs.create_view()
+        dis = FilesystemDisplay('/home/john/test tree')
+        dis.apply_view(fs)
+
         fs = fs
 
 

@@ -7,18 +7,19 @@ class Folder(defaultdict):
         super(Folder, self).__init__(Folder)
 
 
+#TODO: add recently added folder
+
 class TreeView():
 
-    def __init__(self, path, db):
-        self.path = path
+    def __init__(self, db):
         self.db = db
         self.files = self.db.find_files()
         self.root=Folder()
 
-    def import_view(self):
+    def import_view(self, path):
         pass
 
-    def update_view(self):
+    def create_view(self):
         for file in self.files:
             if type(file.media) is Episode:
                 self.insert_episode(file)
@@ -63,7 +64,7 @@ class TreeView():
 
         #-------By Rating
         byrating = series["Rating"]
-        rating_folder = byrating[math.floor(media.series.rating)]
+        rating_folder = byrating[str(math.floor(media.series.rating))]
         rating_folder[media.series.title] = series_folder
 
         #------All
@@ -98,7 +99,7 @@ class TreeView():
 
         #-------By Rating
         byrating = movies["Rating"]
-        rating_folder = byrating[math.floor(media.rating)]
+        rating_folder = byrating[str(math.floor(media.rating))]
         rating_folder[media.title] = movie
 
         #--------All
