@@ -41,7 +41,7 @@ class TreeView():
         alpha = series["Alphabetically"]
         letter = alpha[media.series.title[0]]
         series_folder = letter[media.series.title]
-        season = series_folder[str(media.season)]
+        season = series_folder['Season '+ str(media.season)]
         season[str(media.episode_no)] = episode
 
         #--------By Series Year
@@ -53,7 +53,7 @@ class TreeView():
         eyear = series["Episode Year"]
         selected_eyear = eyear[str(media.year)]
         eyear_series_folder = selected_eyear[media.series.title]
-        eyear_season=eyear_series_folder[str(media.season)]
+        eyear_season=eyear_series_folder['Season '+ str(media.season)]
         eyear_season[str(media.episode_no)]= episode
 
         #--------By Genre
