@@ -1,7 +1,7 @@
 __author__ = 'john'
 
 
-from sqlalchemy import Column, Integer, String , Float, Date, DateTime, ForeignKey, Table
+from sqlalchemy import Column, Integer, String , Float, Date, DateTime,Boolean, ForeignKey, Table
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 

@@ -1,23 +1,15 @@
-from collections import defaultdict
 from persistance.db_schema import *
 import math
-
-class Folder(defaultdict):
-    def __init__(self, *args, **kwargs):
-        super(Folder, self).__init__(Folder)
-
+import views
 
 #TODO: add recently added folder
 
-class TreeView():
+class CategoriesTree():
 
     def __init__(self, db):
         self.db = db
         self.files = self.db.find_files()
-        self.root=Folder()
-
-    def import_view(self, path):
-        pass
+        self.root=views.Folder()
 
     def create_view(self):
         for file in self.files:
@@ -32,7 +24,7 @@ class TreeView():
         media = file.media
 
         #Episode, common for all categories
-        episode= {'link': file.path}
+        episode= [views.Link(file.path)]
 
         #Create Series folder
         series = self.root["Series"]
@@ -76,7 +68,7 @@ class TreeView():
         media = file.media
 
         #Episode, common for all categories
-        movie= {'link': file.path}
+        movie= [views.Link(file.path)]
 
         #Create Movies folder
         movies = self.root["Movies"]

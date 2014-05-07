@@ -8,11 +8,43 @@ from scrappers import opensubtitles
 
 class Opensubtitles(Identifier):
 
-    def __init__(self, db):
-        self.db = db
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.all_files = None
+        self.recognized_files = None
+        self.new_files = None
 
     def identify_files(self, *files):
-        return self.identify_video(*files)
+        #break in smaller groups
+        self.all_files = files
+        groupslist = [files[i:i+50] for i in range(0, len(files), 50)]
+
+        recognized_list = list()
+        new_list = list()
+        for group in groupslist:
+            all, new = self.identify_video(*group)
+            recognized_list.extend(all)
+            new_list.extend(new)
+
+        self.recognized_files = recognized_list
+        self.new_files = new_list
+        return recognized_list
+
+    def get_identified_files(self):
+        return self.recognized_files
+
+
+    def get_new_files(self):
+        return  self.new_files
+
+
+    def get_unidentified_files(self):
+        unrecognized = list()
+        for file in self.all_files:
+            if file not in self.recognized_files:
+                unrecognized.append(file)
+
+        return unrecognized
 
 
     def identify_video(self, *files):

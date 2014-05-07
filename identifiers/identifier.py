@@ -7,6 +7,18 @@ import logging
 
 class Identifier(ABC):
 
+    def __init__(self, db):
+        self.db = db
+
+    @abstractmethod
+    def get_identified_files(self):pass
+
+    @abstractmethod
+    def get_new_files(self):pass
+
+    @abstractmethod
+    def get_unidentified_files(self):pass
+
     @abstractmethod
     def identify_files(self,*file):pass
 

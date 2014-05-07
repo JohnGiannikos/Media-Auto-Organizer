@@ -5,8 +5,6 @@ import logging
 
 from identifiers import opensubtitles
 from metadata import imdb
-from views.tree import TreeView
-from  displays.filesystem_display import FilesystemDisplay
 
 class MediaScanner():
 
@@ -38,21 +36,16 @@ class MediaScanner():
         self.files = [f for f in self.files if self.identifier.get_filetype(f.path)=='video']
 
     def analyze_files(self):
-        logging.info("Recongnizing files")
         #recognize
-        recognized , new = self.identifier.identify_files(*self.files)
-        logging.info("Get more metadata")
-        self.metadata.update_metadata(*new)
+
+        recognized = self.identifier.identify_files(*self.files)
+        new = self.identifier.get_new_files()
+
         for file in recognized:
+            logging.info("Inserting file : %s" % file.path)
+            if file in new:
+                self.metadata.update_metadata(file)
             self.db.save_file(file)
-
-        fs = TreeView(self.db)
-        fs.create_view()
-        dis = FilesystemDisplay('/home/john/test tree')
-        dis.apply_view(fs)
-
-        fs = fs
-
 
 
 
