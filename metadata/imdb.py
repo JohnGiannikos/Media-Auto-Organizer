@@ -1,9 +1,9 @@
 __author__ = 'john'
 
 from scrappers import imdbpie
-from persistance.db_schema import *
+import data_types
 from .metadata import Metadata
-
+from datetime import datetime
 
 class Imdb(Metadata):
 
@@ -31,29 +31,29 @@ class Imdb(Metadata):
 
 
         for genre in data.genres:
-            self.db.add_genre(media,genre)
-
+            new_genre = data_types.Genre(name=genre)
+            media.genres.append(new_genre)
 
         for director in data.directors_summary:
-            self.db.add_person(media,director.name,'Director', director.imdb_id)
+            job = data_types.Job(description='Director')
+            new_person = data_types.Person(imdbid= director.imdb_id, name=director.name, job=job)
+            media.persons.append(new_person)
 
         for writer in data.writers_summary:
-            self.db.add_person(media,writer.name,'Writer', writer.imdb_id)
+            job = data_types.Job(description='Writer')
+            new_person = data_types.Person(imdbid= writer.imdb_id, name=writer.name, job=job)
+            media.persons.append(new_person)
 
         for cast in data.cast_summary:
-            self.db.add_person(media,cast.name,'Cast', cast.imdb_id)
+            job = data_types.Job(description='Cast')
+            new_person = data_types.Person(imdbid= cast.imdb_id, name=cast.name, job=job)
+            media.persons.append(new_person)
 
-        if type(media) == Episode:
-            series, is_new = self.db.create_series(data.data["series"]["tconst"])
-            if is_new:
-                imdbdata = imdb.find_movie_by_id(series.imdbid)
-                series.tagline = imdbdata.tagline
-                series.title= imdbdata.title
-                series.rating= imdbdata.rating
-                series.year = imdbdata.year
-                series.plot_outline = imdbdata.plot_outline
-                series.cover_url = imdbdata.cover_url
-                series.poster_url = imdbdata.poster_url
+        if type(media) == data_types.Episode:
+            series_imdb = data.data["series"]["tconst"]
+            imdbdata = imdb.find_movie_by_id(series_imdb)
+            new_series = data_types.Series( imdbid= series_imdb, tagline=imdbdata.tagline, title=imdbdata.title,
+                                       rating= imdbdata.rating, year=imdbdata.year,plot_outline=imdbdata.plot_outline,
+                                       cover_url=imdbdata.cover_url,poster_url=imdbdata.poster_url )
 
-
-            media.series = series
+            media.series = new_series

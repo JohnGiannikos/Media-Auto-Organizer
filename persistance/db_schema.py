@@ -1,11 +1,11 @@
 __author__ = 'john'
 
 
-from sqlalchemy import Column, Integer, String , Float, Date, DateTime,Boolean, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Float, Date, DateTime, ForeignKey, Table
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 
-from datetime import  datetime
+from datetime import datetime
 
 Base = declarative_base()
 
@@ -22,8 +22,8 @@ class File(Base):
 
 
 genre_association_table = Table('genre_m2m', Base.metadata,
-    Column('left_id', Integer, ForeignKey('media.id')),
-    Column('right_id', Integer, ForeignKey('genres.id'))
+    Column('media_id', Integer, ForeignKey('media.id')),
+    Column('genre_id', Integer, ForeignKey('genres.id'))
 )
 
 class Media(Base):
@@ -52,6 +52,7 @@ class Movie(Media):
     cover_url = Column(String)
     poster_url = Column(String)
 
+
 class Series(Base):
     __tablename__ = 'series'
     id = Column(Integer, primary_key=True)
@@ -64,6 +65,7 @@ class Series(Base):
     cover_url = Column(String)
     poster_url = Column(String)
     episodes = relationship("Episode",backref="series")
+
 
 class Episode(Media):
     __tablename__ = 'episodes'
@@ -83,6 +85,7 @@ class Episode(Media):
     cover_url = Column(String)
     poster_url = Column(String)
 
+
 class Genre(Base):
     __tablename__= 'genres'
     id = Column(Integer, primary_key=True)
@@ -95,14 +98,16 @@ class Person(Base):
     imdbid = Column(String, unique=True)
     name = Column(String)
 
+
 class PersonM2M(Base):
     __tablename__='person_m2m'
     id = Column(Integer,primary_key=True)
-    file_id = Column(Integer, ForeignKey('media.id'))
+    media_id = Column(Integer, ForeignKey('media.id'))
     person_id = Column(Integer, ForeignKey('persons.id'))
     job_id = Column(Integer,ForeignKey('jobs.id'))
     job = relationship('Job')
     person = relationship("Person", backref="media_assocs")
+
 
 class Job(Base):
     __tablename__ = "jobs"

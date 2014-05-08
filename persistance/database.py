@@ -55,6 +55,8 @@ class Database():
             logging.error("Error inserting file %s" % str(e))
             return
 
+    def query(self, model, **kwargs):
+        return self.session.query(model).filter_by(**kwargs).first()
 
     def get_or_create(self, model, defaults=None, **kwargs):
         instance = self.session.query(model).filter_by(**kwargs).first()
@@ -64,8 +66,8 @@ class Database():
             params = dict((k, v) for k, v in kwargs.items() if not isinstance(v, ClauseElement))
             params.update(defaults or {})
             instance = model(**params)
-            self.session.add(instance)
-            self.session.commit()
+            #self.session.add(instance)
+            #self.session.commit()
             return instance, True
 
 

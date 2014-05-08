@@ -1,5 +1,3 @@
-from persistance import database
-
 __author__ = 'john'
 
 import media_scanner
@@ -8,8 +6,7 @@ import logging
 from views.categories import CategoriesTree
 from displays.filesystem_display import FilesystemDisplay
 from views.storage import StorageView
-import persistance.db_schema as db_schema
-
+from persistance import database
 
 class Organizer ():
 
@@ -36,16 +33,21 @@ class Organizer ():
         scanner.filter_old()
         scanner.analyze_files()
 
+        #self.move_to_storage('/home/john/testraw')
+        #self.create_filesystem_view('/home/john/test tree')
+
+
+
+    def move_to_storage(self, path):
         self.filemanager.create_view()
-        dis = FilesystemDisplay('/home/john/testraw')
+        dis = FilesystemDisplay(path)
         dis.apply_view(self.filemanager)
 
+    def create_filesystem_view(self, path):
         fs = CategoriesTree(self.db)
         fs.create_view()
-        dis = FilesystemDisplay('/home/john/test tree')
+        dis = FilesystemDisplay(path)
         dis.apply_view(fs)
-
-
 
 
 
