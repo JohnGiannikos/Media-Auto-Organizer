@@ -35,16 +35,15 @@ class Organizer ():
         scanner.filter_video()
         scanner.filter_old()
         scanner.analyze_files()
-        fs = CategoriesTree(self.db)
-        fs.create_view()
-        dis = FilesystemDisplay('/home/john/test tree')
-        dis.apply_view(fs)
-
 
         self.filemanager.create_view()
         dis = FilesystemDisplay('/home/john/testraw')
         dis.apply_view(self.filemanager)
 
+        fs = CategoriesTree(self.db)
+        fs.create_view()
+        dis = FilesystemDisplay('/home/john/test tree')
+        dis.apply_view(fs)
 
 
 
