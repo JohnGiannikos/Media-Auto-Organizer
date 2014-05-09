@@ -41,7 +41,7 @@ class Movie(Media):
     __tablename__ = 'movies'
     __mapper_args__ = {'polymorphic_identity': 1}
     movie_id = Column('id',Integer,ForeignKey('media.id'), primary_key=True)
-    imdbid = Column(String, unique=True,primary_key=True)
+    imdbid = Column(String, unique=True, primary_key=True)
     tagline = Column(String)
     title = Column(String)
     rating = Column(Float)

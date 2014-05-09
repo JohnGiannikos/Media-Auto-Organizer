@@ -8,14 +8,16 @@ from displays.filesystem_display import FilesystemDisplay
 from views.storage import StorageView
 from persistance import database
 
+#logging.basicConfig(level=logging.INFO)
+
 class Organizer ():
 
-    def __init__(self):
-        self.db = database.Database()
+    def __init__(self, config=None):
         self.config = dict()
         exec(open("setting.conf").read(), self.config)
-
+        self.db = database.Database(self.config['db_path'])
         self.filemanager = StorageView(self.db)
+
         self.scan_paths()
 
 
@@ -34,8 +36,7 @@ class Organizer ():
         scanner.analyze_files()
 
         #self.move_to_storage('/home/john/testraw')
-        #self.create_filesystem_view('/home/john/test tree')
-
+        self.create_filesystem_view('/home/john/test tree')
 
 
     def move_to_storage(self, path):
@@ -50,9 +51,9 @@ class Organizer ():
         dis.apply_view(fs)
 
 
-
 if __name__ == "__main__":
-
+    log = logging.getLogger('media_scanner')
+    log.setLevel(logging.INFO)
     org = Organizer()
 
 

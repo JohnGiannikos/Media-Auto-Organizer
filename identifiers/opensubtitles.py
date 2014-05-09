@@ -46,14 +46,15 @@ class Opensubtitles(Identifier):
             return recognized
 
     def extract_opensubtitles_data(self, data):
-        if data["MovieKind"] == "episode":
+        if data["MovieKind"] == "episode" :
             return data_types.Episode(imdbid="tt"+data["MovieImdbID"],
                                          season=int(data["SeriesSeason"]),
                                          episode_no=int(data["SeriesEpisode"]),
                                          year=int(data["MovieYear"]))
-        elif data["MovieKind"] ==  "movie":
+        elif data["MovieKind"] ==  "movie" or data["MovieKind"]=="video" or data["MovieKind"]=="tv movie" \
+                  or data["MovieKind"]=="tv series" :
             return data_types.Movie(imdbid="tt"+data["MovieImdbID"],
                                              year=int(data["MovieYear"]))
         else:
-            raise TypeError("uknown video type")
+            raise TypeError("uknown video type: '%s'" % data["MovieKind"] )
 

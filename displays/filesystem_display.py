@@ -4,6 +4,7 @@ import views
 from views.categories import *
 import os
 import shutil
+import logging
 
 class FilesystemDisplay():
 
@@ -38,7 +39,10 @@ class FilesystemDisplay():
 
         for folder in folders :
             if folder not in parent.keys():
-                shutil.rmtree(os.path.join(path, folder))
+                try:
+                    shutil.rmtree(os.path.join(path, folder))
+                except Exception as e:
+                    logging.error("Could not delete folder: %s" % str(e))
 
         for key,value in parent.items():
             new_path = os.path.join(path, key)

@@ -15,6 +15,8 @@ class Imdb(Metadata):
 
         media = file.media
         data = imdb.find_movie_by_id(media.imdbid)
+        if not data:
+            raise LookupError
         media.title = data.title
         media.tagline = data.tagline
         media.rating = data.rating

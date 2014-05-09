@@ -1,7 +1,7 @@
 __author__ = 'john'
 
 from persistance import db_schema
-
+from enum import Enum
 from abc import ABC, abstractmethod
 
 class DbObject(ABC):
@@ -242,7 +242,7 @@ class Genre(DbObject):
         self.name = name
 
     def create_db_object(self, db):
-        self.db_object,_ = db.get_or_create(self.db_map, name=self.name)
+        self.db_object = db.insert_obj(self.db_map, name=self.name)
         return self.db_object
 
     def load_from_db(self, db):
@@ -291,7 +291,7 @@ class Job(DbObject):
         self.description = description
 
     def create_db_object(self, db):
-        self.db_object,_ = db.get_or_create(self.db_map, description=self.description)
+        self.db_object = db.insert_obj(self.db_map, description=self.description)
         return self.db_object
 
     def load_from_db(self, db):
