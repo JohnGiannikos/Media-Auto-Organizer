@@ -11,9 +11,9 @@ import time
 
 class Database():
     def __init__(self, path):
-        self.engine = create_engine('sqlite:///'+ os.path.join(path,'organizer.db'), echo=True)
-        #Base.metadata.drop_all(self.engine)
-        #Base.metadata.create_all(self.engine)
+        self.engine = create_engine('sqlite:///'+ os.path.join(path, 'organizer.db'), echo=True)
+        Base.metadata.drop_all(self.engine)
+        Base.metadata.create_all(self.engine)
         Session = sessionmaker()
         Session.configure(bind=self.engine)
         self.session = Session(autocommit=False)

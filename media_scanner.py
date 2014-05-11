@@ -22,10 +22,12 @@ class MediaScanner():
         for root, subFolders, files in os.walk(path):
             if files:
                 for file in files:
-                    full_path = os.path.join(root,file)
-                    rec = data_types.File(path = full_path,
-                                              size = os.stat(full_path).st_size)
-                    if rec.size>= minSize:
+                    full_path = os.path.join(root, file)
+                    try:
+                        rec = data_types.File(path=full_path, size=os.stat(full_path).st_size)
+                    except Exception as e:
+                        logging.error("Could not open file "+str(e))
+                    if rec.size >= minSize:
                         self.files.append(rec)
         logging.info("Found %d files" % len(self.files))
 

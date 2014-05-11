@@ -14,7 +14,7 @@ class Organizer ():
 
     def __init__(self, config=None):
         self.config = dict()
-        exec(open("setting.conf").read(), self.config)
+        exec(open("settings.py").read(), self.config)
         self.db = database.Database(self.config['db_path'])
         self.filemanager = StorageView(self.db)
 
